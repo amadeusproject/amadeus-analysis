@@ -1,0 +1,1493 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="postgres" schema="public" type="PostgreSQL - 11.1 (Debian 11.1-1.pgdg90+1)">
+   <tables>
+      <table name="auth_group" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('auth_group_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="group_id" foreignKey="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" implied="false" onDeleteCascade="false" schema="public" table="auth_group_permissions"/>
+            <child column="group_id" foreignKey="users_user_groups_group_id_9afc8d0e_fk_auth_group_id" implied="false" onDeleteCascade="false" schema="public" table="users_user_groups"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="80" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="auth_group_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="auth_group_name_a6ea08ec_like" unique="false">
+            <column ascending="true" name="name"/>
+         </index>
+         <index name="auth_group_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="auth_group_permissions" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('auth_group_permissions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="group_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" implied="false" onDeleteCascade="false" schema="public" table="auth_group"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="permission_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="auth_group_permiss_permission_id_84c5c92e_fk_auth_permission_id" implied="false" onDeleteCascade="false" schema="public" table="auth_permission"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="auth_group_permissions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="auth_group_permissions_0e939a4f" unique="false">
+            <column ascending="true" name="group_id"/>
+         </index>
+         <index name="auth_group_permissions_8373b171" unique="false">
+            <column ascending="true" name="permission_id"/>
+         </index>
+         <index name="auth_group_permissions_group_id_0cd325b0_uniq" unique="true">
+            <column ascending="true" name="group_id"/>
+            <column ascending="true" name="permission_id"/>
+         </index>
+      </table>
+      <table name="auth_permission" numRows="168" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('auth_permission_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="permission_id" foreignKey="auth_group_permiss_permission_id_84c5c92e_fk_auth_permission_id" implied="false" onDeleteCascade="false" schema="public" table="auth_group_permissions"/>
+            <child column="permission_id" foreignKey="users_user_user_pe_permission_id_0b93982e_fk_auth_permission_id" implied="false" onDeleteCascade="false" schema="public" table="users_user_user_permissions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="content_type_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="auth_permiss_content_type_id_2f476e4b_fk_django_content_type_id" implied="false" onDeleteCascade="false" schema="public" table="django_content_type"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="codename" nullable="false" remarks="" size="100" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="auth_permission_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="auth_permission_417f1b1c" unique="false">
+            <column ascending="true" name="content_type_id"/>
+         </index>
+         <index name="auth_permission_content_type_id_01ab375a_uniq" unique="true">
+            <column ascending="true" name="content_type_id"/>
+            <column ascending="true" name="codename"/>
+         </index>
+      </table>
+      <table name="banco_questoes_alternative" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('banco_questoes_alternative_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="answer_id" foreignKey="questionary_answer_id_9dd8d91f_fk_banco_questoes_alternative_id" implied="false" onDeleteCascade="false" schema="public" table="questionary_useranswer"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="content" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="alt_img" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="is_correct" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="4" name="question_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="banco_questo_question_id_a272bd77_fk_banco_questoes_question_id" implied="false" onDeleteCascade="false" schema="public" table="banco_questoes_question"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="banco_questoes_alternative_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="banco_questoes_alternative_7aa0f6ee" unique="false">
+            <column ascending="true" name="question_id"/>
+         </index>
+      </table>
+      <table name="banco_questoes_question" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('banco_questoes_question_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="question_id" foreignKey="banco_questo_question_id_a272bd77_fk_banco_questoes_question_id" implied="false" onDeleteCascade="false" schema="public" table="banco_questoes_alternative"/>
+            <child column="question_id" foreignKey="banco_questo_question_id_a2de8ea6_fk_banco_questoes_question_id" implied="false" onDeleteCascade="false" schema="public" table="banco_questoes_question_categories"/>
+            <child column="question_id" foreignKey="questionary__question_id_1ba4714e_fk_banco_questoes_question_id" implied="false" onDeleteCascade="false" schema="public" table="questionary_useranswer"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="enunciado" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="question_img" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="subject_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="banco_questoes_quest_subject_id_d215e227_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="banco_questoes_question_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="banco_questoes_question_ffaba1d1" unique="false">
+            <column ascending="true" name="subject_id"/>
+         </index>
+      </table>
+      <table name="banco_questoes_question_categories" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('banco_questoes_question_categories_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="question_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="banco_questo_question_id_a2de8ea6_fk_banco_questoes_question_id" implied="false" onDeleteCascade="false" schema="public" table="banco_questoes_question"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="tag_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="banco_questoes_question_cate_tag_id_e287c40c_fk_subjects_tag_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_tag"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="banco_questoes_question_categories_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="banco_questoes_question_categories_76f094bc" unique="false">
+            <column ascending="true" name="tag_id"/>
+         </index>
+         <index name="banco_questoes_question_categories_7aa0f6ee" unique="false">
+            <column ascending="true" name="question_id"/>
+         </index>
+         <index name="banco_questoes_question_categories_question_id_b0705950_uniq" unique="true">
+            <column ascending="true" name="question_id"/>
+            <column ascending="true" name="tag_id"/>
+         </index>
+      </table>
+      <table name="bulletin_bulletin" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="resource_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="bulletin_bulleti_resource_ptr_id_1fa896f8_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="content" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="file_content" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="indicators" nullable="true" remarks="" size="100" type="varchar"/>
+         <primaryKey column="resource_ptr_id" sequenceNumberInPK="1"/>
+         <index name="bulletin_bulletin_pkey" unique="true">
+            <column ascending="true" name="resource_ptr_id"/>
+         </index>
+      </table>
+      <table name="categories_category" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('categories_category_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="category_id" foreignKey="categories_categ_category_id_8bb1fd75_fk_categories_category_id" implied="false" onDeleteCascade="false" schema="public" table="categories_category_coordinators"/>
+            <child column="space_id" foreignKey="mural_categorypost_space_id_90fd83a6_fk_categories_category_id" implied="false" onDeleteCascade="false" schema="public" table="mural_categorypost"/>
+            <child column="category_id" foreignKey="subjects_subject_category_id_1a0c2ea9_fk_categories_category_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="slug" nullable="false" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="300" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="visible" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="5" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="6" name="modified_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="categories_category_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="categories_category_name_debcfc14_like" unique="false">
+            <column ascending="true" name="name"/>
+         </index>
+         <index name="categories_category_name_debcfc14_uniq" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+         <index name="categories_category_slug_6fddebb1_like" unique="false">
+            <column ascending="true" name="slug"/>
+         </index>
+         <index name="categories_category_slug_key" unique="true">
+            <column ascending="true" name="slug"/>
+         </index>
+      </table>
+      <table name="categories_category_coordinators" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('categories_category_coordinators_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="category_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="categories_categ_category_id_8bb1fd75_fk_categories_category_id" implied="false" onDeleteCascade="false" schema="public" table="categories_category"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="categories_category_coordinat_user_id_9426eae5_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="categories_category_coordinators_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="categories_category_coordinators_b583a629" unique="false">
+            <column ascending="true" name="category_id"/>
+         </index>
+         <index name="categories_category_coordinators_category_id_dc3981da_uniq" unique="true">
+            <column ascending="true" name="category_id"/>
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="categories_category_coordinators_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="chat_chatfavorites" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('chat_chatfavorites_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="message_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="chat_chatfavorites_message_id_a1d61679_fk_chat_talkmessages_id" implied="false" onDeleteCascade="false" schema="public" table="chat_talkmessages"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="chat_chatfavorites_user_id_495927fa_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="chat_chatfavorites_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="chat_chatfavorites_4ccaa172" unique="false">
+            <column ascending="true" name="message_id"/>
+         </index>
+         <index name="chat_chatfavorites_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="chat_chatvisualizations" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('chat_chatvisualizations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="viewed" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="2" name="date_viewed" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="3" name="message_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="chat_chatvisualizat_message_id_5ae6b99f_fk_chat_talkmessages_id" implied="false" onDeleteCascade="false" schema="public" table="chat_talkmessages"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="chat_chatvisualizations_user_id_b91648a6_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="chat_chatvisualizations_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="chat_chatvisualizations_4ccaa172" unique="false">
+            <column ascending="true" name="message_id"/>
+         </index>
+         <index name="chat_chatvisualizations_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="chat_conversation" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('chat_conversation_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="talk_id" foreignKey="chat_talkmessages_talk_id_8646ebed_fk_chat_conversation_id" implied="false" onDeleteCascade="false" schema="public" table="chat_talkmessages"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="user_one_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="chat_conversation_user_one_id_3ada0f92_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_two_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="chat_conversation_user_two_id_12dbca40_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="chat_conversation_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="chat_conversation_905979e3" unique="false">
+            <column ascending="true" name="user_one_id"/>
+         </index>
+         <index name="chat_conversation_dbe3d845" unique="false">
+            <column ascending="true" name="user_two_id"/>
+         </index>
+      </table>
+      <table name="chat_talkmessages" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('chat_talkmessages_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="message_id" foreignKey="chat_chatfavorites_message_id_a1d61679_fk_chat_talkmessages_id" implied="false" onDeleteCascade="false" schema="public" table="chat_chatfavorites"/>
+            <child column="message_id" foreignKey="chat_chatvisualizat_message_id_5ae6b99f_fk_chat_talkmessages_id" implied="false" onDeleteCascade="false" schema="public" table="chat_chatvisualizations"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="text" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="image" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="3" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="4" name="talk_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="chat_talkmessages_talk_id_8646ebed_fk_chat_conversation_id" implied="false" onDeleteCascade="false" schema="public" table="chat_conversation"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="chat_talkmessages_user_id_c01b716f_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="subject_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="chat_talkmessages_subject_id_58fa1dd7_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="chat_talkmessages_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="chat_talkmessages_393ebc1b" unique="false">
+            <column ascending="true" name="talk_id"/>
+         </index>
+         <index name="chat_talkmessages_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="chat_talkmessages_ffaba1d1" unique="false">
+            <column ascending="true" name="subject_id"/>
+         </index>
+      </table>
+      <table name="django_admin_log" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('django_admin_log_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="6" id="1" name="action_time" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="object_id" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="object_repr" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="action_flag" nullable="false" remarks="" size="5" type="int2"/>
+         <column autoUpdated="false" digits="0" id="5" name="change_message" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="content_type_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="django_admin_content_type_id_c4bce8eb_fk_django_content_type_id" implied="false" onDeleteCascade="false" schema="public" table="django_content_type"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="7" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="django_admin_log_user_id_c564eba6_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_admin_log_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="django_admin_log_417f1b1c" unique="false">
+            <column ascending="true" name="content_type_id"/>
+         </index>
+         <index name="django_admin_log_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="django_content_type" numRows="56" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('django_content_type_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="content_type_id" foreignKey="auth_permiss_content_type_id_2f476e4b_fk_django_content_type_id" implied="false" onDeleteCascade="false" schema="public" table="auth_permission"/>
+            <child column="content_type_id" foreignKey="django_admin_content_type_id_c4bce8eb_fk_django_content_type_id" implied="false" onDeleteCascade="false" schema="public" table="django_admin_log"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="app_label" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="model" nullable="false" remarks="" size="100" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_content_type_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="django_content_type_app_label_76bd3d3b_uniq" unique="true">
+            <column ascending="true" name="app_label"/>
+            <column ascending="true" name="model"/>
+         </index>
+      </table>
+      <table name="django_cron_cronjoblog" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('django_cron_cronjoblog_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="code" nullable="false" remarks="" size="64" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="start_time" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="3" name="end_time" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="4" name="is_success" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="5" name="message" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="6" name="ran_at_time" nullable="true" remarks="" size="15" type="time"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_cron_cronjoblog_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="django_cron_cronjoblog_305d2889" unique="false">
+            <column ascending="true" name="end_time"/>
+         </index>
+         <index name="django_cron_cronjoblog_a05e4b70" unique="false">
+            <column ascending="true" name="ran_at_time"/>
+         </index>
+         <index name="django_cron_cronjoblog_c1336794" unique="false">
+            <column ascending="true" name="code"/>
+         </index>
+         <index name="django_cron_cronjoblog_c4d98dbd" unique="false">
+            <column ascending="true" name="start_time"/>
+         </index>
+         <index name="django_cron_cronjoblog_code_48865653_like" unique="false">
+            <column ascending="true" name="code"/>
+         </index>
+         <index name="django_cron_cronjoblog_code_4fc78f9d_idx" unique="false">
+            <column ascending="true" name="code"/>
+            <column ascending="true" name="start_time"/>
+         </index>
+         <index name="django_cron_cronjoblog_code_84da9606_idx" unique="false">
+            <column ascending="true" name="code"/>
+            <column ascending="true" name="is_success"/>
+            <column ascending="true" name="ran_at_time"/>
+         </index>
+         <index name="django_cron_cronjoblog_code_8b50b8fa_idx" unique="false">
+            <column ascending="true" name="code"/>
+            <column ascending="true" name="start_time"/>
+            <column ascending="true" name="ran_at_time"/>
+         </index>
+      </table>
+      <table name="django_migrations" numRows="158" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('django_migrations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="app" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="3" name="applied" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_migrations_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="django_session" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="session_key" nullable="false" remarks="" size="40" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="session_data" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="2" name="expire_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="session_key" sequenceNumberInPK="1"/>
+         <index name="django_session_pkey" unique="true">
+            <column ascending="true" name="session_key"/>
+         </index>
+         <index name="django_session_de54fa62" unique="false">
+            <column ascending="true" name="expire_date"/>
+         </index>
+         <index name="django_session_session_key_c0390e0f_like" unique="false">
+            <column ascending="true" name="session_key"/>
+         </index>
+      </table>
+      <table name="django_summernote_attachment" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('django_summernote_attachment_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="file" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="3" name="uploaded" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_summernote_attachment_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="fcm_django_fcmdevice" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('fcm_django_fcmdevice_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="active" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="3" name="date_created" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="4" name="device_id" nullable="true" remarks="" size="150" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="registration_id" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="type" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="fcm_django_fcmdevice_user_id_6cdfc0a2_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="fcm_django_fcmdevice_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fcm_django_fcmdevice_9379346c" unique="false">
+            <column ascending="true" name="device_id"/>
+         </index>
+         <index name="fcm_django_fcmdevice_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="file_link_filelink" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="resource_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="file_link_fileli_resource_ptr_id_166d5187_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="file_content" nullable="false" remarks="" size="100" type="varchar"/>
+         <primaryKey column="resource_ptr_id" sequenceNumberInPK="1"/>
+         <index name="file_link_filelink_pkey" unique="true">
+            <column ascending="true" name="resource_ptr_id"/>
+         </index>
+      </table>
+      <table name="goals_goalitem" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('goals_goalitem_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="item_id" foreignKey="goals_mygoals_item_id_d41dd74f_fk_goals_goalitem_id" implied="false" onDeleteCascade="false" schema="public" table="goals_mygoals"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="description" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="ref_value" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="order" nullable="true" remarks="" size="5" type="int2"/>
+         <column autoUpdated="false" digits="0" id="4" name="goal_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="resource_ptr_id" foreignKey="goals_goalitem_goal_id_632c13e6_fk_goals_goals_resource_ptr_id" implied="false" onDeleteCascade="false" schema="public" table="goals_goals"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="goals_goalitem_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="goals_goalitem_b730706b" unique="false">
+            <column ascending="true" name="goal_id"/>
+         </index>
+      </table>
+      <table name="goals_goals" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="resource_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="goal_id" foreignKey="goals_goalitem_goal_id_632c13e6_fk_goals_goals_resource_ptr_id" implied="false" onDeleteCascade="false" schema="public" table="goals_goalitem"/>
+            <parent column="id" foreignKey="goals_goals_resource_ptr_id_3d763c84_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="presentation" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="2" name="limit_submission_date" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="resource_ptr_id" sequenceNumberInPK="1"/>
+         <index name="goals_goals_pkey" unique="true">
+            <column ascending="true" name="resource_ptr_id"/>
+         </index>
+      </table>
+      <table name="goals_mygoals" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('goals_mygoals_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="value" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="2" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="3" name="last_update" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="4" name="item_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="goals_mygoals_item_id_d41dd74f_fk_goals_goalitem_id" implied="false" onDeleteCascade="false" schema="public" table="goals_goalitem"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="goals_mygoals_user_id_58507db6_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="goals_mygoals_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="goals_mygoals_b730706b" unique="false">
+            <column ascending="true" name="item_id"/>
+         </index>
+         <index name="goals_mygoals_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="links_link" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="resource_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="links_link_resource_ptr_id_a97d37f3_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="link_url" nullable="false" remarks="" size="250" type="varchar"/>
+         <primaryKey column="resource_ptr_id" sequenceNumberInPK="1"/>
+         <index name="links_link_pkey" unique="true">
+            <column ascending="true" name="resource_ptr_id"/>
+         </index>
+      </table>
+      <table name="log_log" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('log_log_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="component" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="context" nullable="false" remarks="" size="2147483647" type="jsonb"/>
+         <column autoUpdated="false" digits="0" id="3" name="action" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="resource" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="user" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="user_id" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="7" name="user_email" nullable="false" remarks="" size="254" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="8" name="datetime" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="log_log_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="mailsender_mailsender" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('mailsender_mailsender_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="description" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="hostname" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="port" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="username" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="password" nullable="false" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="crypto" nullable="false" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="mailsender_mailsender_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="mural_categorypost" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="mural_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_categorypost_mural_ptr_id_94eee7a4_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_mural"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="space_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_categorypost_space_id_90fd83a6_fk_categories_category_id" implied="false" onDeleteCascade="false" schema="public" table="categories_category"/>
+         </column>
+         <primaryKey column="mural_ptr_id" sequenceNumberInPK="1"/>
+         <index name="mural_categorypost_pkey" unique="true">
+            <column ascending="true" name="mural_ptr_id"/>
+         </index>
+         <index name="mural_categorypost_84defa73" unique="false">
+            <column ascending="true" name="space_id"/>
+         </index>
+      </table>
+      <table name="mural_comment" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('mural_comment_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="comment_id" foreignKey="mural_muralvisualizatio_comment_id_71d718c9_fk_mural_comment_id" implied="false" onDeleteCascade="false" schema="public" table="mural_muralvisualizations"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="comment" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="image" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="3" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="4" name="last_update" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="5" name="post_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_comment_post_id_1d7bba28_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_mural"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_comment_user_id_883c0c76_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="7" name="edited" nullable="false" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="mural_comment_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="mural_comment_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="mural_comment_f3aa1999" unique="false">
+            <column ascending="true" name="post_id"/>
+         </index>
+      </table>
+      <table name="mural_generalpost" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="mural_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_generalpost_mural_ptr_id_632a6da9_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_mural"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="space" nullable="false" remarks="" size="10" type="int4"/>
+         <primaryKey column="mural_ptr_id" sequenceNumberInPK="1"/>
+         <index name="mural_generalpost_pkey" unique="true">
+            <column ascending="true" name="mural_ptr_id"/>
+         </index>
+      </table>
+      <table name="mural_mural" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('mural_mural_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="mural_ptr_id" foreignKey="mural_categorypost_mural_ptr_id_94eee7a4_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_categorypost"/>
+            <child column="post_id" foreignKey="mural_comment_post_id_1d7bba28_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_comment"/>
+            <child column="mural_ptr_id" foreignKey="mural_generalpost_mural_ptr_id_632a6da9_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_generalpost"/>
+            <child column="post_id" foreignKey="mural_muralfavorites_post_id_554e7a4c_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_muralfavorites"/>
+            <child column="post_id" foreignKey="mural_muralvisualizations_post_id_e9f201fa_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_muralvisualizations"/>
+            <child column="mural_ptr_id" foreignKey="mural_subjectpost_mural_ptr_id_a1d43137_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_subjectpost"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="_my_subclass" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="action" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="post" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="image" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="5" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="6" name="last_update" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="7" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_mural_user_id_c9b1155b_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="8" name="edited" nullable="false" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="mural_mural_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="mural_mural_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="mural_muralfavorites" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('mural_muralfavorites_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="post_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_muralfavorites_post_id_554e7a4c_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_mural"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_muralfavorites_user_id_c2bff7e1_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="mural_muralfavorites_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="mural_muralfavorites_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="mural_muralfavorites_f3aa1999" unique="false">
+            <column ascending="true" name="post_id"/>
+         </index>
+      </table>
+      <table name="mural_muralvisualizations" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('mural_muralvisualizations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="viewed" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="2" name="comment_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_muralvisualizatio_comment_id_71d718c9_fk_mural_comment_id" implied="false" onDeleteCascade="false" schema="public" table="mural_comment"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="post_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_muralvisualizations_post_id_e9f201fa_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_mural"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_muralvisualizations_user_id_6d064bce_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="5" name="date_viewed" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="mural_muralvisualizations_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="mural_muralvisualizations_69b97d17" unique="false">
+            <column ascending="true" name="comment_id"/>
+         </index>
+         <index name="mural_muralvisualizations_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="mural_muralvisualizations_f3aa1999" unique="false">
+            <column ascending="true" name="post_id"/>
+         </index>
+      </table>
+      <table name="mural_subjectpost" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="mural_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_subjectpost_mural_ptr_id_a1d43137_fk_mural_mural_id" implied="false" onDeleteCascade="false" schema="public" table="mural_mural"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="resource_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_subjectpost_resource_id_c15b2834_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="space_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="mural_subjectpost_space_id_d220141d_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject"/>
+         </column>
+         <primaryKey column="mural_ptr_id" sequenceNumberInPK="1"/>
+         <index name="mural_subjectpost_pkey" unique="true">
+            <column ascending="true" name="mural_ptr_id"/>
+         </index>
+         <index name="mural_subjectpost_84defa73" unique="false">
+            <column ascending="true" name="space_id"/>
+         </index>
+         <index name="mural_subjectpost_e2f3ef5b" unique="false">
+            <column ascending="true" name="resource_id"/>
+         </index>
+      </table>
+      <table name="news_news" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('news_news_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="title" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="slug" nullable="false" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="image" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="content" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="5" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="6" name="creator_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="news_news_creator_id_91298130_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="news_news_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="news_news_3700153c" unique="false">
+            <column ascending="true" name="creator_id"/>
+         </index>
+         <index name="news_news_slug_2b9132f1_like" unique="false">
+            <column ascending="true" name="slug"/>
+         </index>
+         <index name="news_news_slug_key" unique="true">
+            <column ascending="true" name="slug"/>
+         </index>
+         <index name="news_news_title_dea61447_like" unique="false">
+            <column ascending="true" name="title"/>
+         </index>
+         <index name="news_news_title_key" unique="true">
+            <column ascending="true" name="title"/>
+         </index>
+      </table>
+      <table name="notifications_notification" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('notifications_notification_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="6" id="1" name="meta" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="level" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="viewed" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="4" name="creation_date" nullable="false" remarks="" size="13" type="date"/>
+         <column autoUpdated="false" digits="0" id="5" name="task_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="notifications_noti_task_id_b4a444e8_fk_pendencies_pendencies_id" implied="false" onDeleteCascade="false" schema="public" table="pendencies_pendencies"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="notifications_notification_user_id_b5e8c0ff_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="notifications_notification_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="notifications_notification_57746cc8" unique="false">
+            <column ascending="true" name="task_id"/>
+         </index>
+         <index name="notifications_notification_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="oauth2_provider_accesstoken" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('oauth2_provider_accesstoken_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="access_token_id" foreignKey="oauth2_provider_refreshtoken_access_token_id_775e84e8_fk" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_refreshtoken"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="token" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="expires" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="3" name="scope" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="application_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="oauth2_provider_accesstoken_application_id_b22886e1_fk" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_application"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="oauth2_provider_accesstoken_user_id_6e4c9a65_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="6" name="created" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="7" name="updated" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="oauth2_provider_accesstoken_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="oauth2_provider_accesstoken_6bc0a4eb" unique="false">
+            <column ascending="true" name="application_id"/>
+         </index>
+         <index name="oauth2_provider_accesstoken_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="oauth2_provider_accesstoken_token_8af090f8_uniq" unique="true">
+            <column ascending="true" name="token"/>
+         </index>
+      </table>
+      <table name="oauth2_provider_application" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('oauth2_provider_application_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="application_id" foreignKey="oauth2_provider_accesstoken_application_id_b22886e1_fk" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_accesstoken"/>
+            <child column="application_id" foreignKey="oauth2_provider_grant_application_id_81923564_fk" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_grant"/>
+            <child column="application_id" foreignKey="oauth2_provider_refreshtoken_application_id_2d1c311b_fk" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_refreshtoken"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="client_id" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="redirect_uris" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="client_type" nullable="false" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="authorization_grant_type" nullable="false" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="client_secret" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="name" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="oauth2_provider_application_user_id_79829054_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="8" name="skip_authorization" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="9" name="created" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="10" name="updated" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="oauth2_provider_application_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="oauth2_provider_application_9d667c2b" unique="false">
+            <column ascending="true" name="client_secret"/>
+         </index>
+         <index name="oauth2_provider_application_client_id_03f0cc84_like" unique="false">
+            <column ascending="true" name="client_id"/>
+         </index>
+         <index name="oauth2_provider_application_client_id_key" unique="true">
+            <column ascending="true" name="client_id"/>
+         </index>
+         <index name="oauth2_provider_application_client_secret_53133678_like" unique="false">
+            <column ascending="true" name="client_secret"/>
+         </index>
+         <index name="oauth2_provider_application_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="oauth2_provider_grant" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('oauth2_provider_grant_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" digits="0" id="1" name="code" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="expires" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="3" name="redirect_uri" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="scope" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="application_id" nullable="false" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="oauth2_provider_grant_application_id_81923564_fk" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_application"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="oauth2_provider_grant_user_id_e8f62af8_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="7" name="created" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="8" name="updated" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="oauth2_provider_grant_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="oauth2_provider_grant_6bc0a4eb" unique="false">
+            <column ascending="true" name="application_id"/>
+         </index>
+         <index name="oauth2_provider_grant_code_49ab4ddf_uniq" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+         <index name="oauth2_provider_grant_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="oauth2_provider_refreshtoken" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('oauth2_provider_refreshtoken_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" digits="0" id="1" name="token" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="access_token_id" nullable="false" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="oauth2_provider_refreshtoken_access_token_id_775e84e8_fk" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_accesstoken"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="application_id" nullable="false" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="oauth2_provider_refreshtoken_application_id_2d1c311b_fk" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_application"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="oauth2_provider_refreshtoken_user_id_da837fce_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="5" name="created" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="6" name="updated" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="oauth2_provider_refreshtoken_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="oauth2_provider_refreshtoken_6bc0a4eb" unique="false">
+            <column ascending="true" name="application_id"/>
+         </index>
+         <index name="oauth2_provider_refreshtoken_access_token_id_key" unique="true">
+            <column ascending="true" name="access_token_id"/>
+         </index>
+         <index name="oauth2_provider_refreshtoken_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="oauth2_provider_refreshtoken_token_d090daa4_uniq" unique="true">
+            <column ascending="true" name="token"/>
+         </index>
+      </table>
+      <table name="pdf_file_pdffile" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="resource_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="pdf_file_pdffile_resource_ptr_id_51dbc343_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="file" nullable="false" remarks="" size="100" type="varchar"/>
+         <primaryKey column="resource_ptr_id" sequenceNumberInPK="1"/>
+         <index name="pdf_file_pdffile_pkey" unique="true">
+            <column ascending="true" name="resource_ptr_id"/>
+         </index>
+      </table>
+      <table name="pendencies_pendencies" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('pendencies_pendencies_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="task_id" foreignKey="notifications_noti_task_id_b4a444e8_fk_pendencies_pendencies_id" implied="false" onDeleteCascade="false" schema="public" table="notifications_notification"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="action" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="begin_date" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="3" name="end_date" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="4" name="resource_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="pendencies_pendencie_resource_id_539590b5_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="5" name="limit_date" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="pendencies_pendencies_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="pendencies_pendencies_e2f3ef5b" unique="false">
+            <column ascending="true" name="resource_id"/>
+         </index>
+      </table>
+      <table name="questionary_questionary" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="resource_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="questionary_id" foreignKey="D9a4d9f3b2355fccbacf29b996e0f33f" implied="false" onDeleteCascade="false" schema="public" table="questionary_specification"/>
+            <child column="questionary_id" foreignKey="D47d5abf9a4a847f9350334a014b3d6a" implied="false" onDeleteCascade="false" schema="public" table="questionary_userquest"/>
+            <parent column="id" foreignKey="questionary_ques_resource_ptr_id_a7c3c990_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="1" name="data_ini" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="2" name="data_end" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="3" name="presentation" nullable="false" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="resource_ptr_id" sequenceNumberInPK="1"/>
+         <index name="questionary_questionary_pkey" unique="true">
+            <column ascending="true" name="resource_ptr_id"/>
+         </index>
+      </table>
+      <table name="questionary_specification" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('questionary_specification_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="specification_id" foreignKey="quest_specification_id_f5a1beb5_fk_questionary_specification_id" implied="false" onDeleteCascade="false" schema="public" table="questionary_specification_categories"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="n_questions" nullable="true" remarks="" size="5" type="int2"/>
+         <column autoUpdated="false" digits="0" id="2" name="questionary_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="resource_ptr_id" foreignKey="D9a4d9f3b2355fccbacf29b996e0f33f" implied="false" onDeleteCascade="false" schema="public" table="questionary_questionary"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="questionary_specification_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="questionary_specification_d40e75d5" unique="false">
+            <column ascending="true" name="questionary_id"/>
+         </index>
+      </table>
+      <table name="questionary_specification_categories" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('questionary_specification_categories_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="specification_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="quest_specification_id_f5a1beb5_fk_questionary_specification_id" implied="false" onDeleteCascade="false" schema="public" table="questionary_specification"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="tag_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="questionary_specification_ca_tag_id_a15c05d5_fk_subjects_tag_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_tag"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="questionary_specification_categories_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="questionary_specification_catego_specification_id_337c4a33_uniq" unique="true">
+            <column ascending="true" name="specification_id"/>
+            <column ascending="true" name="tag_id"/>
+         </index>
+         <index name="questionary_specification_categories_76f094bc" unique="false">
+            <column ascending="true" name="tag_id"/>
+         </index>
+         <index name="questionary_specification_categories_8110dce6" unique="false">
+            <column ascending="true" name="specification_id"/>
+         </index>
+      </table>
+      <table name="questionary_useranswer" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('questionary_useranswer_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="is_correct" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="2" name="order" nullable="true" remarks="" size="5" type="int2"/>
+         <column autoUpdated="false" digits="0" id="3" name="answer_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="questionary_answer_id_9dd8d91f_fk_banco_questoes_alternative_id" implied="false" onDeleteCascade="false" schema="public" table="banco_questoes_alternative"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="question_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="questionary__question_id_1ba4714e_fk_banco_questoes_question_id" implied="false" onDeleteCascade="false" schema="public" table="banco_questoes_question"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="user_quest_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="questionary__user_quest_id_5ed80463_fk_questionary_userquest_id" implied="false" onDeleteCascade="false" schema="public" table="questionary_userquest"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="6" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="questionary_useranswer_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="questionary_useranswer_5a5ced99" unique="false">
+            <column ascending="true" name="user_quest_id"/>
+         </index>
+         <index name="questionary_useranswer_7aa0f6ee" unique="false">
+            <column ascending="true" name="question_id"/>
+         </index>
+         <index name="questionary_useranswer_fb12e902" unique="false">
+            <column ascending="true" name="answer_id"/>
+         </index>
+      </table>
+      <table name="questionary_userquest" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('questionary_userquest_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="user_quest_id" foreignKey="questionary__user_quest_id_5ed80463_fk_questionary_userquest_id" implied="false" onDeleteCascade="false" schema="public" table="questionary_useranswer"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="1" name="data_ini" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="2" name="last_update" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="3" name="questionary_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="resource_ptr_id" foreignKey="D47d5abf9a4a847f9350334a014b3d6a" implied="false" onDeleteCascade="false" schema="public" table="questionary_questionary"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="student_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="questionary_userquest_student_id_7cfab832_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="questionary_userquest_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="questionary_userquest_30a811f6" unique="false">
+            <column ascending="true" name="student_id"/>
+         </index>
+         <index name="questionary_userquest_d40e75d5" unique="false">
+            <column ascending="true" name="questionary_id"/>
+         </index>
+      </table>
+      <table name="reports_reportcsv" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('reports_reportcsv_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="csv_data" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="reports_reportcsv_user_id_32e9182d_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="reports_reportcsv_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="reports_reportcsv_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="reports_reportxls" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('reports_reportxls_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="xls_data" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="reports_reportxls_user_id_b524b7de_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="reports_reportxls_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="reports_reportxls_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="security_security" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('security_security_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="allow_register" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="2" name="maintence" nullable="false" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="security_security_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="students_group_studentsgroup" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('students_group_studentsgroup_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="studentsgroup_id" foreignKey="st_studentsgroup_id_269f8947_fk_students_group_studentsgroup_id" implied="false" onDeleteCascade="false" schema="public" table="students_group_studentsgroup_participants"/>
+            <child column="studentsgroup_id" foreignKey="to_studentsgroup_id_c08b9e35_fk_students_group_studentsgroup_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource_groups"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="slug" nullable="false" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="description" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="4" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="5" name="last_update" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="6" name="subject_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="students_group_stude_subject_id_a2ef138f_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="students_group_studentsgroup_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="students_group_studentsgroup_ffaba1d1" unique="false">
+            <column ascending="true" name="subject_id"/>
+         </index>
+         <index name="students_group_studentsgroup_slug_06b818fb_like" unique="false">
+            <column ascending="true" name="slug"/>
+         </index>
+         <index name="students_group_studentsgroup_slug_key" unique="true">
+            <column ascending="true" name="slug"/>
+         </index>
+      </table>
+      <table name="students_group_studentsgroup_participants" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('students_group_studentsgroup_participants_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="studentsgroup_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="st_studentsgroup_id_269f8947_fk_students_group_studentsgroup_id" implied="false" onDeleteCascade="false" schema="public" table="students_group_studentsgroup"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="students_group_studentsgroup__user_id_5a3c99f3_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="students_group_studentsgroup_participants_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="students_group_studentsgroup_par_studentsgroup_id_44aa98c4_uniq" unique="true">
+            <column ascending="true" name="studentsgroup_id"/>
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="students_group_studentsgroup_participants_62e68210" unique="false">
+            <column ascending="true" name="studentsgroup_id"/>
+         </index>
+         <index name="students_group_studentsgroup_participants_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="subjects_subject" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('subjects_subject_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="subject_id" foreignKey="banco_questoes_quest_subject_id_d215e227_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="banco_questoes_question"/>
+            <child column="subject_id" foreignKey="chat_talkmessages_subject_id_58fa1dd7_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="chat_talkmessages"/>
+            <child column="space_id" foreignKey="mural_subjectpost_space_id_d220141d_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="mural_subjectpost"/>
+            <child column="subject_id" foreignKey="students_group_stude_subject_id_a2ef138f_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="students_group_studentsgroup"/>
+            <child column="subject_id" foreignKey="subjects_subject_pro_subject_id_58c8c4fa_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject_professor"/>
+            <child column="subject_id" foreignKey="subjects_subject_stu_subject_id_ef39d96c_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject_students"/>
+            <child column="subject_id" foreignKey="subjects_subject_tag_subject_id_e30c4189_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject_tags"/>
+            <child column="subject_id" foreignKey="topics_topic_subject_id_462ee52e_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="topics_topic"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="slug" nullable="false" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="description_brief" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="description" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="visible" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="6" name="init_date" nullable="false" remarks="" size="13" type="date"/>
+         <column autoUpdated="false" digits="0" id="7" name="end_date" nullable="false" remarks="" size="13" type="date"/>
+         <column autoUpdated="false" digits="6" id="8" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="9" name="update_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="10" name="max_upload_size" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="11" name="category_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="subjects_subject_category_id_1a0c2ea9_fk_categories_category_id" implied="false" onDeleteCascade="false" schema="public" table="categories_category"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="12" name="subscribe_begin" nullable="false" remarks="" size="13" type="date"/>
+         <column autoUpdated="false" digits="0" id="13" name="subscribe_end" nullable="false" remarks="" size="13" type="date"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="subjects_subject_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="subjects_subject_b583a629" unique="false">
+            <column ascending="true" name="category_id"/>
+         </index>
+         <index name="subjects_subject_slug_730ccc60_like" unique="false">
+            <column ascending="true" name="slug"/>
+         </index>
+         <index name="subjects_subject_slug_key" unique="true">
+            <column ascending="true" name="slug"/>
+         </index>
+      </table>
+      <table name="subjects_subject_professor" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('subjects_subject_professor_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="subject_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="subjects_subject_pro_subject_id_58c8c4fa_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="subjects_subject_professor_user_id_680d83c6_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="subjects_subject_professor_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="subjects_subject_professor_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="subjects_subject_professor_ffaba1d1" unique="false">
+            <column ascending="true" name="subject_id"/>
+         </index>
+         <index name="subjects_subject_professor_subject_id_811b2643_uniq" unique="true">
+            <column ascending="true" name="subject_id"/>
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="subjects_subject_students" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('subjects_subject_students_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="subject_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="subjects_subject_stu_subject_id_ef39d96c_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="subjects_subject_students_user_id_a93aeef8_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="subjects_subject_students_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="subjects_subject_students_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="subjects_subject_students_ffaba1d1" unique="false">
+            <column ascending="true" name="subject_id"/>
+         </index>
+         <index name="subjects_subject_students_subject_id_7feb510d_uniq" unique="true">
+            <column ascending="true" name="subject_id"/>
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="subjects_subject_tags" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('subjects_subject_markers_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="subject_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="subjects_subject_tag_subject_id_e30c4189_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="tag_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="subjects_subject_tags_tag_id_c1075b22_fk_subjects_tag_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_tag"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="subjects_subject_markers_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="subjects_subject_markers_945c7b03" unique="false">
+            <column ascending="true" name="tag_id"/>
+         </index>
+         <index name="subjects_subject_markers_ffaba1d1" unique="false">
+            <column ascending="true" name="subject_id"/>
+         </index>
+         <index name="subjects_subject_markers_subject_id_ea2525b0_uniq" unique="true">
+            <column ascending="true" name="subject_id"/>
+            <column ascending="true" name="tag_id"/>
+         </index>
+      </table>
+      <table name="subjects_tag" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('subjects_marker_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="tag_id" foreignKey="banco_questoes_question_cate_tag_id_e287c40c_fk_subjects_tag_id" implied="false" onDeleteCascade="false" schema="public" table="banco_questoes_question_categories"/>
+            <child column="tag_id" foreignKey="questionary_specification_ca_tag_id_a15c05d5_fk_subjects_tag_id" implied="false" onDeleteCascade="false" schema="public" table="questionary_specification_categories"/>
+            <child column="tag_id" foreignKey="subjects_subject_tags_tag_id_c1075b22_fk_subjects_tag_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject_tags"/>
+            <child column="tag_id" foreignKey="topics_resource_tags_tag_id_e68779af_fk_subjects_tag_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource_tags"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="200" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="subjects_marker_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="subjects_marker_name_b85ef3fb_like" unique="false">
+            <column ascending="true" name="name"/>
+         </index>
+         <index name="subjects_marker_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="themes_themes" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('themes_themes_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="title" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="small_logo" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="large_logo" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="high_contrast_logo" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="footer_note" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="css_style" nullable="false" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="favicon" nullable="true" remarks="" size="100" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="themes_themes_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="topics_resource" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('topics_resource_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="resource_ptr_id" foreignKey="bulletin_bulleti_resource_ptr_id_1fa896f8_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="bulletin_bulletin"/>
+            <child column="resource_ptr_id" foreignKey="file_link_fileli_resource_ptr_id_166d5187_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="file_link_filelink"/>
+            <child column="resource_ptr_id" foreignKey="goals_goals_resource_ptr_id_3d763c84_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="goals_goals"/>
+            <child column="resource_ptr_id" foreignKey="links_link_resource_ptr_id_a97d37f3_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="links_link"/>
+            <child column="resource_id" foreignKey="mural_subjectpost_resource_id_c15b2834_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="mural_subjectpost"/>
+            <child column="resource_ptr_id" foreignKey="pdf_file_pdffile_resource_ptr_id_51dbc343_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="pdf_file_pdffile"/>
+            <child column="resource_id" foreignKey="pendencies_pendencie_resource_id_539590b5_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="pendencies_pendencies"/>
+            <child column="resource_ptr_id" foreignKey="questionary_ques_resource_ptr_id_a7c3c990_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="questionary_questionary"/>
+            <child column="resource_id" foreignKey="topics_resource_grou_resource_id_556a4025_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource_groups"/>
+            <child column="resource_id" foreignKey="topics_resource_stud_resource_id_04416645_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource_students"/>
+            <child column="resource_id" foreignKey="topics_resource_tags_resource_id_418cfcc8_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource_tags"/>
+            <child column="resource_ptr_id" foreignKey="webconference_we_resource_ptr_id_0ddc728d_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="webconference_webconference"/>
+            <child column="resource_ptr_id" foreignKey="webpage_webpage_resource_ptr_id_d417298d_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="webpage_webpage"/>
+            <child column="resource_ptr_id" foreignKey="youtube_video_yt_resource_ptr_id_1998106a_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="youtube_video_ytvideo"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="slug" nullable="false" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="brief_description" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="show_window" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="5" name="all_students" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="6" name="visible" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="7" name="order" nullable="true" remarks="" size="5" type="int2"/>
+         <column autoUpdated="false" digits="6" id="8" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="9" name="last_update" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="10" name="topic_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="topics_resource_topic_id_b9aac0cb_fk_topics_topic_id" implied="false" onDeleteCascade="false" schema="public" table="topics_topic"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="11" name="_my_subclass" nullable="false" remarks="" size="200" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="topics_resource_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="topics_resource_19b4d727" unique="false">
+            <column ascending="true" name="topic_id"/>
+         </index>
+         <index name="topics_resource_slug_f5657676_like" unique="false">
+            <column ascending="true" name="slug"/>
+         </index>
+         <index name="topics_resource_slug_key" unique="true">
+            <column ascending="true" name="slug"/>
+         </index>
+      </table>
+      <table name="topics_resource_groups" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('topics_resource_groups_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="resource_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="topics_resource_grou_resource_id_556a4025_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="studentsgroup_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="to_studentsgroup_id_c08b9e35_fk_students_group_studentsgroup_id" implied="false" onDeleteCascade="false" schema="public" table="students_group_studentsgroup"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="topics_resource_groups_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="topics_resource_groups_62e68210" unique="false">
+            <column ascending="true" name="studentsgroup_id"/>
+         </index>
+         <index name="topics_resource_groups_e2f3ef5b" unique="false">
+            <column ascending="true" name="resource_id"/>
+         </index>
+         <index name="topics_resource_groups_resource_id_8d9d6c2b_uniq" unique="true">
+            <column ascending="true" name="resource_id"/>
+            <column ascending="true" name="studentsgroup_id"/>
+         </index>
+      </table>
+      <table name="topics_resource_students" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('topics_resource_students_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="resource_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="topics_resource_stud_resource_id_04416645_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="topics_resource_students_user_id_fcfc81e3_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="topics_resource_students_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="topics_resource_students_e2f3ef5b" unique="false">
+            <column ascending="true" name="resource_id"/>
+         </index>
+         <index name="topics_resource_students_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="topics_resource_students_resource_id_a355e64a_uniq" unique="true">
+            <column ascending="true" name="resource_id"/>
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="topics_resource_tags" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('topics_resource_tags_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="resource_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="topics_resource_tags_resource_id_418cfcc8_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="tag_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="topics_resource_tags_tag_id_e68779af_fk_subjects_tag_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_tag"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="topics_resource_tags_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="topics_resource_tags_76f094bc" unique="false">
+            <column ascending="true" name="tag_id"/>
+         </index>
+         <index name="topics_resource_tags_e2f3ef5b" unique="false">
+            <column ascending="true" name="resource_id"/>
+         </index>
+         <index name="topics_resource_tags_resource_id_9a8a2840_uniq" unique="true">
+            <column ascending="true" name="resource_id"/>
+            <column ascending="true" name="tag_id"/>
+         </index>
+      </table>
+      <table name="topics_topic" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('topics_topic_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="topic_id" foreignKey="topics_resource_topic_id_b9aac0cb_fk_topics_topic_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="slug" nullable="false" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="description" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="repository" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="5" name="visible" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="6" name="order" nullable="true" remarks="" size="5" type="int2"/>
+         <column autoUpdated="false" digits="6" id="7" name="create_date" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="8" name="last_update" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="9" name="subject_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="topics_topic_subject_id_462ee52e_fk_subjects_subject_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="topics_topic_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="topics_topic_ffaba1d1" unique="false">
+            <column ascending="true" name="subject_id"/>
+         </index>
+         <index name="topics_topic_slug_9a23c0cf_like" unique="false">
+            <column ascending="true" name="slug"/>
+         </index>
+         <index name="topics_topic_slug_key" unique="true">
+            <column ascending="true" name="slug"/>
+         </index>
+      </table>
+      <table name="users_user" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('users_user_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="user_id" foreignKey="categories_category_coordinat_user_id_9426eae5_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="categories_category_coordinators"/>
+            <child column="user_id" foreignKey="chat_chatfavorites_user_id_495927fa_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="chat_chatfavorites"/>
+            <child column="user_id" foreignKey="chat_chatvisualizations_user_id_b91648a6_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="chat_chatvisualizations"/>
+            <child column="user_one_id" foreignKey="chat_conversation_user_one_id_3ada0f92_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="chat_conversation"/>
+            <child column="user_two_id" foreignKey="chat_conversation_user_two_id_12dbca40_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="chat_conversation"/>
+            <child column="user_id" foreignKey="chat_talkmessages_user_id_c01b716f_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="chat_talkmessages"/>
+            <child column="user_id" foreignKey="django_admin_log_user_id_c564eba6_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="django_admin_log"/>
+            <child column="user_id" foreignKey="fcm_django_fcmdevice_user_id_6cdfc0a2_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="fcm_django_fcmdevice"/>
+            <child column="user_id" foreignKey="goals_mygoals_user_id_58507db6_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="goals_mygoals"/>
+            <child column="user_id" foreignKey="mural_comment_user_id_883c0c76_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="mural_comment"/>
+            <child column="user_id" foreignKey="mural_mural_user_id_c9b1155b_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="mural_mural"/>
+            <child column="user_id" foreignKey="mural_muralfavorites_user_id_c2bff7e1_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="mural_muralfavorites"/>
+            <child column="user_id" foreignKey="mural_muralvisualizations_user_id_6d064bce_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="mural_muralvisualizations"/>
+            <child column="creator_id" foreignKey="news_news_creator_id_91298130_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="news_news"/>
+            <child column="user_id" foreignKey="notifications_notification_user_id_b5e8c0ff_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="notifications_notification"/>
+            <child column="user_id" foreignKey="oauth2_provider_accesstoken_user_id_6e4c9a65_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_accesstoken"/>
+            <child column="user_id" foreignKey="oauth2_provider_application_user_id_79829054_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_application"/>
+            <child column="user_id" foreignKey="oauth2_provider_grant_user_id_e8f62af8_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_grant"/>
+            <child column="user_id" foreignKey="oauth2_provider_refreshtoken_user_id_da837fce_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="oauth2_provider_refreshtoken"/>
+            <child column="student_id" foreignKey="questionary_userquest_student_id_7cfab832_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="questionary_userquest"/>
+            <child column="user_id" foreignKey="reports_reportcsv_user_id_32e9182d_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="reports_reportcsv"/>
+            <child column="user_id" foreignKey="reports_reportxls_user_id_b524b7de_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="reports_reportxls"/>
+            <child column="user_id" foreignKey="students_group_studentsgroup__user_id_5a3c99f3_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="students_group_studentsgroup_participants"/>
+            <child column="user_id" foreignKey="subjects_subject_professor_user_id_680d83c6_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject_professor"/>
+            <child column="user_id" foreignKey="subjects_subject_students_user_id_a93aeef8_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="subjects_subject_students"/>
+            <child column="user_id" foreignKey="topics_resource_students_user_id_fcfc81e3_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource_students"/>
+            <child column="user_id" foreignKey="users_user_groups_user_id_5f6f5a90_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user_groups"/>
+            <child column="user_id" foreignKey="users_user_user_permissions_user_id_20aca447_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user_user_permissions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="password" nullable="false" remarks="" size="128" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="last_login" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="3" name="is_superuser" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="4" name="email" nullable="false" remarks="" size="254" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="username" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="last_name" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="social_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="description" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="9" name="image" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="10" name="date_created" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="11" name="show_email" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="12" name="is_staff" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="13" name="is_active" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="14" name="last_update" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="users_user_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="users_user_email_243f6e77_like" unique="false">
+            <column ascending="true" name="email"/>
+         </index>
+         <index name="users_user_email_key" unique="true">
+            <column ascending="true" name="email"/>
+         </index>
+      </table>
+      <table name="users_user_groups" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('users_user_groups_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="users_user_groups_user_id_5f6f5a90_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="group_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="users_user_groups_group_id_9afc8d0e_fk_auth_group_id" implied="false" onDeleteCascade="false" schema="public" table="auth_group"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="users_user_groups_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="users_user_groups_0e939a4f" unique="false">
+            <column ascending="true" name="group_id"/>
+         </index>
+         <index name="users_user_groups_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="users_user_groups_user_id_b88eab82_uniq" unique="true">
+            <column ascending="true" name="user_id"/>
+            <column ascending="true" name="group_id"/>
+         </index>
+      </table>
+      <table name="users_user_user_permissions" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('users_user_user_permissions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="users_user_user_permissions_user_id_20aca447_fk_users_user_id" implied="false" onDeleteCascade="false" schema="public" table="users_user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="permission_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="users_user_user_pe_permission_id_0b93982e_fk_auth_permission_id" implied="false" onDeleteCascade="false" schema="public" table="auth_permission"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="users_user_user_permissions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="users_user_user_permissions_8373b171" unique="false">
+            <column ascending="true" name="permission_id"/>
+         </index>
+         <index name="users_user_user_permissions_e8701ad4" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="users_user_user_permissions_user_id_43338c45_uniq" unique="true">
+            <column ascending="true" name="user_id"/>
+            <column ascending="true" name="permission_id"/>
+         </index>
+      </table>
+      <table name="webconference_conferencesettings" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('webconference_conferencesettings_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="domain" nullable="false" remarks="" size="100" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="webconference_conferencesettings_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="webconference_webconference" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="resource_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="webconference_we_resource_ptr_id_0ddc728d_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="presentation" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="2" name="start" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="6" id="3" name="end" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="resource_ptr_id" sequenceNumberInPK="1"/>
+         <index name="webconference_webconference_pkey" unique="true">
+            <column ascending="true" name="resource_ptr_id"/>
+         </index>
+      </table>
+      <table name="webpage_webpage" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="resource_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="webpage_webpage_resource_ptr_id_d417298d_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="content" nullable="false" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="resource_ptr_id" sequenceNumberInPK="1"/>
+         <index name="webpage_webpage_pkey" unique="true">
+            <column ascending="true" name="resource_ptr_id"/>
+         </index>
+      </table>
+      <table name="youtube_video_ytvideo" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="resource_ptr_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="youtube_video_yt_resource_ptr_id_1998106a_fk_topics_resource_id" implied="false" onDeleteCascade="false" schema="public" table="topics_resource"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="url" nullable="false" remarks="" size="250" type="varchar"/>
+         <primaryKey column="resource_ptr_id" sequenceNumberInPK="1"/>
+         <index name="youtube_video_ytvideo_pkey" unique="true">
+            <column ascending="true" name="resource_ptr_id"/>
+         </index>
+      </table>
+   </tables>
+</database>
